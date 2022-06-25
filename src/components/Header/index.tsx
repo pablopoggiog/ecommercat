@@ -15,10 +15,15 @@ import {
   Stack,
   useColorMode,
   Center,
+  Text,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon, CheckCircleIcon } from "@chakra-ui/icons";
-import { useAppSelector } from "hooks/reduxHooks";
-import { selectCartProducts } from "state/slices/cart/slice";
+import { useAppSelector, useAppDispatch } from "hooks/reduxHooks";
+import {
+  selectCartProducts,
+  incrementProductAmount,
+  decrementProductAmount,
+} from "state/slices/cart/slice";
 
 // const NavLink = ({ children }: { children: ReactNode }) => (
 //   <Link
@@ -37,7 +42,9 @@ import { selectCartProducts } from "state/slices/cart/slice";
 
 export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const dispatch = useAppDispatch();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
 
   const cartList = useAppSelector(selectCartProducts);
 
@@ -55,7 +62,7 @@ export const Header = () => {
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
 
-              <Menu>
+              <Menu closeOnSelect={false}>
                 <MenuButton
                   as={Button}
                   rounded={"full"}
@@ -83,11 +90,23 @@ export const Header = () => {
                   <br />
                   <MenuDivider />
 
-                  {cartList.map(({ product: { name }, amount }) => (
-                    <MenuItem>
-                      {name} - {amount}
-                    </MenuItem>
-                  ))}
+                  {cartList.map(({ product: { name, id }, amount }) => {
+                    const increment = () =>
+                      dispatch(incrementProductAmount(id));
+                    const decrement = () =>
+                      dispatch(decrementProductAmount(id));
+
+                    return (
+                      <MenuItem gap={3}>
+                        <Text>{name}</Text>
+                        <Button onClick={decrement}>-1</Button>
+                        <Text fontSize="lg" fontWeight="extrabold">
+                          {amount}
+                        </Text>
+                        <Button onClick={increment}>+1</Button>
+                      </MenuItem>
+                    );
+                  })}
                 </MenuList>
               </Menu>
             </Stack>

@@ -31,10 +31,29 @@ export const cartSlice = createSlice({
         ];
       console.log("state.cartList: ", state.cartList);
     },
+    incrementProductAmount: (
+      state,
+      { payload: id }: PayloadAction<Product["id"]>
+    ) => {
+      const productIndex = state.cartList.findIndex(
+        (element) => element.product.id === id
+      );
+      state.cartList[productIndex].amount++;
+    },
+    decrementProductAmount: (
+      state,
+      { payload: id }: PayloadAction<Product["id"]>
+    ) => {
+      const productIndex = state.cartList.findIndex(
+        (element) => element.product.id === id
+      );
+      state.cartList[productIndex].amount--;
+    },
   },
 });
 
-export const { addProduct } = cartSlice.actions;
+export const { addProduct, incrementProductAmount, decrementProductAmount } =
+  cartSlice.actions;
 
 export const selectCartProducts = (state: RootState) =>
   state.cartReducer.cartList;
