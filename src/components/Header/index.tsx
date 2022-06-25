@@ -8,7 +8,6 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
   MenuDivider,
   // useDisclosure,
   useColorModeValue,
@@ -19,11 +18,8 @@ import {
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon, CheckCircleIcon } from "@chakra-ui/icons";
 import { useAppSelector, useAppDispatch } from "hooks/reduxHooks";
-import {
-  cartReducer,
-  incrementProductAmount,
-  decrementProductAmount,
-} from "state/slices/cart/slice";
+import { CartItem } from "components";
+import { cartReducer } from "state/slices/cart/slice";
 
 // const NavLink = ({ children }: { children: ReactNode }) => (
 //   <Link
@@ -42,9 +38,6 @@ import {
 
 export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-
-  const dispatch = useAppDispatch();
-  // const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { cartList, totalPrice } = useAppSelector(cartReducer);
 
@@ -96,26 +89,9 @@ export const Header = () => {
                     </Text>
                   </Center>
                   <MenuDivider />
-
-                  {cartList.map(({ product: { name, id }, amount }) => {
-                    const increment = () =>
-                      dispatch(incrementProductAmount(id));
-                    const decrement = () =>
-                      dispatch(decrementProductAmount(id));
-
-                    return (
-                      <MenuItem justifyContent="space-between" gap={5}>
-                        <Text fontWeight="bold">{name}</Text>
-                        <Flex gap={3} align="center">
-                          <Button onClick={decrement}>-1</Button>
-                          <Text fontSize="lg" fontWeight="bold">
-                            {amount}
-                          </Text>
-                          <Button onClick={increment}>+1</Button>
-                        </Flex>
-                      </MenuItem>
-                    );
-                  })}
+                  {cartList.map(({ product: { name, id }, amount }) => (
+                    <CartItem name={name} id={id} amount={amount} />
+                  ))}
                 </MenuList>
               </Menu>
             </Stack>
