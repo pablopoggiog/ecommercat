@@ -15,10 +15,6 @@ export const Products = () => {
     dispatch(fetchProductsAsync());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   console.log("products[0]: ", products[1]);
-  // }, [products]);
-
   return (
     <Grid
       m={5}
