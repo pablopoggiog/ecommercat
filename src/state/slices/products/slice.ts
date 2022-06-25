@@ -1,10 +1,10 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../../store";
-import { Product } from "types";
+import { RawProduct } from "types";
 
 export interface ProductsState {
-  products: Product[];
+  products: RawProduct[];
   status: "idle" | "loading" | "failed";
 }
 

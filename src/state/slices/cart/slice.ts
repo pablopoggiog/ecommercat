@@ -1,46 +1,42 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
-import { RootState, AppThunk } from "../../store";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+import { RootState } from "../../store";
 import { Product } from "types";
 
+interface CartProduct {
+  amount: number;
+  product: Product;
+}
 export interface CartState {
-  products: Product[];
+  cartList: CartProduct[];
 }
 
 const initialState: CartState = {
-  products: [],
+  cartList: [],
 };
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    addProduct: (state, { payload }: PayloadAction<Product>) => {
-      state.products = [...state.products, payload];
-      console.log("state.products: ", state.products);
+    addProduct: (state, { payload: newProduct }: PayloadAction<Product>) => {
+      const productIndex = state.cartList.findIndex(
+        (element) => element.product.id === newProduct.id
+      );
+      if (productIndex !== -1) state.cartList[productIndex].amount++;
+      else
+        state.cartList = [
+          ...state.cartList,
+          { amount: 1, product: newProduct },
+        ];
+      console.log("state.cartList: ", state.cartList);
     },
   },
 });
 
 export const { addProduct } = cartSlice.actions;
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectCartProducts = (state: RootState) =>
-  state.cartReducer.products;
-
-// We can also write thunks by hand, which may contain both sync and async logic.
-// Here's an example of conditionally dispatching actions based on current state.
-// export const incrementIfOdd =
-//   (amount: number): AppThunk =>
-//   (dispatch, getState) => {
-//     const currentValue = selectCount(getState());
-//     if (currentValue % 2 === 1) {
-//       dispatch(incrementByAmount(amount));
-//     }
-//   };
+  state.cartReducer.cartList;
 
 export default cartSlice.reducer;

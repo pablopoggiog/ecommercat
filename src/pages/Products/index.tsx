@@ -16,7 +16,7 @@ export const Products = () => {
   }, [dispatch]);
 
   // useEffect(() => {
-  //   console.log("products[0]: ", products[0]);
+  //   console.log("products[0]: ", products[1]);
   // }, [products]);
 
   return (
@@ -31,14 +31,14 @@ export const Products = () => {
       ]}
       gap={6}
     >
-      {products?.map(({ name, type, image }, index) => (
-        // I can just safely use the index as key bc I won't be removing items from the list
+      {products?.map(({ name, type, image }) => (
         <ProductCard
-          key={index}
+          key={image}
           image={image}
           name={name}
           type={type}
           price={10}
+          id={image}
         />
       ))}
     </Grid>
