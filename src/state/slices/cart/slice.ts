@@ -60,11 +60,23 @@ export const cartSlice = createSlice({
         );
       else state.cartList[productIndex].amount--;
     },
+    removeProduct: (state, { payload: id }: PayloadAction<Product["id"]>) => {
+      const productIndex = state.cartList.findIndex(
+        (element) => element.product.id === id
+      );
+      state.cartList = state.cartList.filter(
+        (_, index) => index !== productIndex
+      );
+    },
   },
 });
 
-export const { addProduct, incrementProductAmount, decrementProductAmount } =
-  cartSlice.actions;
+export const {
+  addProduct,
+  incrementProductAmount,
+  decrementProductAmount,
+  removeProduct,
+} = cartSlice.actions;
 
 export const cartReducer = (state: RootState) => state.cartReducer;
 
