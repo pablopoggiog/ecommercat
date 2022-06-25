@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Products, Header } from "./components";
+import { Header } from "./components";
+import { Home } from "./pages";
 
 const App = () => (
   <>
@@ -7,7 +8,6 @@ const App = () => (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
       </Routes>
     </BrowserRouter>
   </>
