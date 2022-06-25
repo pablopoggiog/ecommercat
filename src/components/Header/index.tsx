@@ -1,15 +1,15 @@
-// import { ReactNode } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import {
   Box,
   Flex,
   Avatar,
-  // Link,
+  Image,
   Button,
   Menu,
   MenuButton,
   MenuList,
+  MenuItem,
   MenuDivider,
-  // useDisclosure,
   useColorModeValue,
   Stack,
   useColorMode,
@@ -17,24 +17,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon, CheckCircleIcon } from "@chakra-ui/icons";
-import { useAppSelector, useAppDispatch } from "hooks/reduxHooks";
+import { useAppSelector } from "hooks/reduxHooks";
 import { CartItem } from "components";
 import { cartReducer } from "state/slices/cart/slice";
-
-// const NavLink = ({ children }: { children: ReactNode }) => (
-//   <Link
-//     px={2}
-//     py={1}
-//     rounded="md"
-//     _hover={{
-//       textDecoration: "none",
-//       bg: useColorModeValue("gray.200", "gray.700"),
-//     }}
-//     href={"#"}
-//   >
-//     {children}
-//   </Link>
-// );
+import CartIcon from "assets/cart-icon.png";
 
 export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -42,62 +28,89 @@ export const Header = () => {
   const { cartList, totalPrice } = useAppSelector(cartReducer);
 
   return (
-    <>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <Box w={60}>
-            <CheckCircleIcon w="unset" h={7} />
-          </Box>
+    <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Flex h={16} alignItems="center" justifyContent="space-between">
+        <Box w={60}>
+          <CheckCircleIcon w="unset" h={7} />
+        </Box>
 
-          <Flex alignItems={"center"}>
-            <Stack direction={"row"} spacing={7}>
-              <Button onClick={toggleColorMode}>
-                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-              </Button>
+        <Flex alignItems="center">
+          <Stack direction="row" spacing={7}>
+            <Button onClick={toggleColorMode}>
+              {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+            </Button>
 
-              <Menu closeOnSelect={false}>
-                <MenuButton
-                  as={Button}
-                  rounded={"full"}
-                  variant={"link"}
-                  cursor={"pointer"}
-                  minW={0}
-                >
+            <Menu closeOnSelect={false}>
+              <MenuButton
+                as={Button}
+                rounded="full"
+                variant="link"
+                cursor="pointer"
+                minW={0}
+              >
+                <Avatar
+                  size="sm"
+                  src="https://avatars.dicebear.com/api/male/username.svg"
+                />
+              </MenuButton>
+              <MenuList alignItems="center">
+                <br />
+                <Center>
                   <Avatar
-                    size={"sm"}
-                    src={"https://avatars.dicebear.com/api/male/username.svg"}
+                    size="2xl"
+                    src="https://avatars.dicebear.com/api/male/username.svg"
                   />
-                </MenuButton>
-                <MenuList alignItems={"center"}>
-                  <br />
-                  <Center>
-                    <Avatar
-                      size={"2xl"}
-                      src={"https://avatars.dicebear.com/api/male/username.svg"}
-                    />
-                  </Center>
-                  <br />
-                  <Center>
-                    <Text fontWeight="extrabold">Your Cart</Text>
-                  </Center>
-                  <br />
-                  <Center>
-                    <Text fontWeight="semibold">
-                      {cartList.length
-                        ? `Total: $${totalPrice}`
-                        : "Nothing here yet!"}
-                    </Text>
-                  </Center>
-                  <MenuDivider />
-                  {cartList.map(({ product: { name, id }, amount }) => (
-                    <CartItem name={name} id={id} amount={amount} />
-                  ))}
-                </MenuList>
-              </Menu>
-            </Stack>
-          </Flex>
+                </Center>
+                <br />
+                <Center>
+                  <Text fontWeight="extrabold">Your Cart</Text>
+                </Center>
+                <br />
+                <Center>
+                  <Text mb={3} fontWeight="semibold">
+                    {cartList.length
+                      ? `Total: $${totalPrice}`
+                      : "Nothing here yet!"}
+                  </Text>
+                </Center>
+                {!!cartList.length && (
+                  <>
+                    <MenuDivider />
+
+                    {cartList?.map(({ product, amount }, index) => (
+                      <CartItem
+                        key={product.id}
+                        product={product}
+                        amount={amount}
+                        isTheLastItem={index === cartList.length - 1}
+                        isDropdownItem
+                      />
+                    ))}
+
+                    <MenuDivider />
+                    <MenuItem
+                      closeOnSelect
+                      w="full"
+                      _hover={{ background: "transparent" }}
+                    >
+                      <Center w="full">
+                        <RouterLink to="/checkout" style={{ width: "100%" }}>
+                          <Button
+                            w="full"
+                            rightIcon={<Image w={6} src={CartIcon} />}
+                          >
+                            Checkout
+                          </Button>
+                        </RouterLink>
+                      </Center>
+                    </MenuItem>
+                  </>
+                )}
+              </MenuList>
+            </Menu>
+          </Stack>
         </Flex>
-      </Box>
-    </>
+      </Flex>
+    </Box>
   );
 };

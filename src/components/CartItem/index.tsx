@@ -1,34 +1,48 @@
 import { FC } from "react";
-import { Flex, Button, MenuItem, Text } from "@chakra-ui/react";
-
+import { Flex, Button, MenuItem, Text, Image } from "@chakra-ui/react";
 import { useAppDispatch } from "hooks/reduxHooks";
 import {
   incrementProductAmount,
   decrementProductAmount,
+  removeProduct,
 } from "state/slices/cart/slice";
+import { DropdownItem, RegularItem } from "./variants";
+import { Product } from "@/types";
 
 interface CartItemProps {
-  name: string;
-  id: string;
+  product: Product;
+  isDropdownItem?: boolean;
   amount: number;
+  isTheLastItem: boolean;
 }
 
-export const CartItem: FC<CartItemProps> = ({ name, id, amount }) => {
+export const CartItem: FC<CartItemProps> = ({
+  product,
+  isDropdownItem,
+  amount,
+  isTheLastItem,
+}) => {
   const dispatch = useAppDispatch();
 
-  const increment = () => dispatch(incrementProductAmount(id));
-  const decrement = () => dispatch(decrementProductAmount(id));
+  const increment = () => dispatch(incrementProductAmount(product.id));
+  const decrement = () => dispatch(decrementProductAmount(product.id));
+  const remove = () => dispatch(removeProduct(product.id));
 
-  return (
-    <MenuItem justifyContent="space-between" gap={5}>
-      <Text fontWeight="bold">{name}</Text>
-      <Flex gap={3} align="center">
-        <Button onClick={decrement}>-1</Button>
-        <Text fontSize="lg" fontWeight="bold">
-          {amount}
-        </Text>
-        <Button onClick={increment}>+1</Button>
-      </Flex>
-    </MenuItem>
+  return isDropdownItem ? (
+    <DropdownItem
+      product={product}
+      amount={amount}
+      decrement={decrement}
+      increment={increment}
+    />
+  ) : (
+    <RegularItem
+      product={product}
+      amount={amount}
+      isTheLastItem={isTheLastItem}
+      decrement={decrement}
+      increment={increment}
+      remove={remove}
+    />
   );
 };
