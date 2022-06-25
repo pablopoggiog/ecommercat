@@ -17,6 +17,7 @@ export const ProductCard: FC<Product> = ({ name, type, price, image, id }) => {
   const dispatch = useAppDispatch();
 
   const imageBackgroundColor = useColorModeValue("gray.300", "gray.700");
+  const descriptionBackgroundColor = useColorModeValue("blue.200", "gray.500");
 
   const addToCart = () => {
     dispatch(addProduct({ name, type, price, image, id }));
@@ -24,7 +25,7 @@ export const ProductCard: FC<Product> = ({ name, type, price, image, id }) => {
 
   return (
     <GridItem
-      borderRadius="md"
+      rounded="md"
       w="full"
       h="250"
       bg={imageBackgroundColor}
@@ -44,9 +45,23 @@ export const ProductCard: FC<Product> = ({ name, type, price, image, id }) => {
             {type}
           </Text>
         </Flex>
-        <VStack w="full" h="fit-content" bgColor="gray.500" p={2}>
+        <VStack
+          w="full"
+          h="fit-content"
+          bgColor={descriptionBackgroundColor}
+          px={2}
+          py={0.5}
+          rounded="lg"
+        >
           <Flex>
-            <Text fontSize={["sm", "md"]} fontWeight="semibold">
+            <Text
+              fontSize={["sm", "md"]}
+              fontWeight="semibold"
+              textOverflow="ellipsis"
+              overflow="hidden"
+              whiteSpace="nowrap"
+              maxW={["150px", "200px", "200px", "350px"]}
+            >
               {name}
             </Text>
           </Flex>
