@@ -20,7 +20,17 @@ export const Products = () => {
   // }, [products]);
 
   return (
-    <Grid m={5} templateColumns="repeat(5, 1fr)" gap={6}>
+    <Grid
+      m={5}
+      templateColumns={[
+        "repeat(2, 1fr)",
+        "repeat(2, 1fr)",
+        "repeat(3, 1fr)",
+        "repeat(4, 1fr)",
+        "repeat(5, 1fr)",
+      ]}
+      gap={6}
+    >
       {products?.map(({ name, type, image }, index) => (
         // I can just safely use the index as key bc I won't be removing items from the list
         <ProductCard
