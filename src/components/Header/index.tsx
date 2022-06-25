@@ -21,6 +21,7 @@ import { useAppSelector } from "hooks/reduxHooks";
 import { CartItem } from "components";
 import { cartReducer } from "state/slices/cart/slice";
 import CartIcon from "assets/cart-icon.png";
+import NintendoLogo from "assets/nintendo-logo.png";
 
 export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -31,7 +32,7 @@ export const Header = () => {
     <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
       <Flex h={16} alignItems="center" justifyContent="space-between">
         <Box w={60}>
-          <CheckCircleIcon w="unset" h={7} />
+          <Image w={100} rounded="lg" src={NintendoLogo} />
         </Box>
 
         <Flex alignItems="center">
@@ -82,7 +83,6 @@ export const Header = () => {
                         key={product.id}
                         product={product}
                         amount={amount}
-                        isTheLastItem={index === cartList.length - 1}
                         isDropdownItem
                       />
                     ))}
