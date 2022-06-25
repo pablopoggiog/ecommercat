@@ -21,6 +21,23 @@ export const Products = () => {
       <ProductCard name="Product name" type="Type" price={10} />
       <ProductCard name="Product name" type="Type" price={10} />
       <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
+      <ProductCard name="Product name" type="Type" price={10} />
     </Grid>
   );
 };
