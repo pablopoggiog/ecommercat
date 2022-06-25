@@ -10,7 +10,7 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
-  useDisclosure,
+  // useDisclosure,
   useColorModeValue,
   Stack,
   useColorMode,
@@ -20,7 +20,7 @@ import {
 import { MoonIcon, SunIcon, CheckCircleIcon } from "@chakra-ui/icons";
 import { useAppSelector, useAppDispatch } from "hooks/reduxHooks";
 import {
-  selectCartProducts,
+  cartReducer,
   incrementProductAmount,
   decrementProductAmount,
 } from "state/slices/cart/slice";
@@ -46,7 +46,7 @@ export const Header = () => {
   const dispatch = useAppDispatch();
   // const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const cartList = useAppSelector(selectCartProducts);
+  const { cartList, totalPrice } = useAppSelector(cartReducer);
 
   return (
     <>
@@ -85,9 +85,16 @@ export const Header = () => {
                   </Center>
                   <br />
                   <Center>
-                    <p>Your Cart</p>
+                    <Text fontWeight="extrabold">Your Cart</Text>
                   </Center>
                   <br />
+                  <Center>
+                    <Text fontWeight="semibold">
+                      {cartList.length
+                        ? `Total: $${totalPrice}`
+                        : "Nothing here yet!"}
+                    </Text>
+                  </Center>
                   <MenuDivider />
 
                   {cartList.map(({ product: { name, id }, amount }) => {
@@ -97,13 +104,15 @@ export const Header = () => {
                       dispatch(decrementProductAmount(id));
 
                     return (
-                      <MenuItem gap={3}>
-                        <Text>{name}</Text>
-                        <Button onClick={decrement}>-1</Button>
-                        <Text fontSize="lg" fontWeight="extrabold">
-                          {amount}
-                        </Text>
-                        <Button onClick={increment}>+1</Button>
+                      <MenuItem justifyContent="space-between" gap={5}>
+                        <Text fontWeight="bold">{name}</Text>
+                        <Flex gap={3} align="center">
+                          <Button onClick={decrement}>-1</Button>
+                          <Text fontSize="lg" fontWeight="bold">
+                            {amount}
+                          </Text>
+                          <Button onClick={increment}>+1</Button>
+                        </Flex>
                       </MenuItem>
                     );
                   })}

@@ -9,10 +9,12 @@ interface CartProduct {
 }
 export interface CartState {
   cartList: CartProduct[];
+  totalPrice: number;
 }
 
 const initialState: CartState = {
   cartList: [],
+  totalPrice: 0,
 };
 
 export const cartSlice = createSlice({
@@ -23,6 +25,8 @@ export const cartSlice = createSlice({
       const productIndex = state.cartList.findIndex(
         (element) => element.product.id === newProduct.id
       );
+
+      state.totalPrice += newProduct.price;
       if (productIndex !== -1) state.cartList[productIndex].amount++;
       else
         state.cartList = [
@@ -37,6 +41,8 @@ export const cartSlice = createSlice({
       const productIndex = state.cartList.findIndex(
         (element) => element.product.id === id
       );
+
+      state.totalPrice += state.cartList[productIndex].product.price;
       state.cartList[productIndex].amount++;
     },
     decrementProductAmount: (
@@ -46,6 +52,8 @@ export const cartSlice = createSlice({
       const productIndex = state.cartList.findIndex(
         (element) => element.product.id === id
       );
+
+      state.totalPrice -= state.cartList[productIndex].product.price;
       if (state.cartList[productIndex].amount === 1)
         state.cartList = state.cartList.filter(
           (_, index) => index !== productIndex
@@ -58,7 +66,6 @@ export const cartSlice = createSlice({
 export const { addProduct, incrementProductAmount, decrementProductAmount } =
   cartSlice.actions;
 
-export const selectCartProducts = (state: RootState) =>
-  state.cartReducer.cartList;
+export const cartReducer = (state: RootState) => state.cartReducer;
 
 export default cartSlice.reducer;
