@@ -29,7 +29,6 @@ export const cartSlice = createSlice({
           ...state.cartList,
           { amount: 1, product: newProduct },
         ];
-      console.log("state.cartList: ", state.cartList);
     },
     incrementProductAmount: (
       state,
@@ -47,7 +46,11 @@ export const cartSlice = createSlice({
       const productIndex = state.cartList.findIndex(
         (element) => element.product.id === id
       );
-      state.cartList[productIndex].amount--;
+      if (state.cartList[productIndex].amount === 1)
+        state.cartList = state.cartList.filter(
+          (_, index) => index !== productIndex
+        );
+      else state.cartList[productIndex].amount--;
     },
   },
 });
