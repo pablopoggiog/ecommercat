@@ -6,29 +6,36 @@ import {
   Button,
   Image,
   Flex,
-  Box,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { useAppDispatch } from "hooks/reduxHooks";
 import { addProduct } from "state/slices/cart/slice";
 import CartIcon from "assets/cart-icon.png";
 import { Product } from "types";
 
-export const ProductCard: FC<Product> = ({ name, type, price, image }) => {
+export const ProductCard: FC<Product> = ({ name, type, price, image, id }) => {
   const dispatch = useAppDispatch();
 
+  const imageBackgroundColor = useColorModeValue("gray.300", "gray.700");
+
   const addToCart = () => {
-    dispatch(addProduct({ name, type, price, image }));
+    dispatch(addProduct({ name, type, price, image, id }));
   };
 
   return (
-    <GridItem borderRadius="md" w="full" h="250" bg="white" overflow="hidden">
+    <GridItem
+      borderRadius="md"
+      w="full"
+      h="250"
+      bg={imageBackgroundColor}
+      overflow="hidden"
+    >
       <VStack h="full" justify="space-between">
         <Flex h={160} w="full" m="auto" position="relative">
           <Image src={image} h="85%" m="auto" />
           <Text
             fontSize={["xs", "sm"]}
             m={0}
-            color="black"
             fontWeight="semibold"
             position="absolute"
             right={[1, 1, 3]}
