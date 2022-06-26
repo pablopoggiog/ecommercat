@@ -34,8 +34,8 @@ export const Products = () => {
           ))
         : Array(30)
             .fill("")
-            .map((el) => (
-              <Box>
+            .map((_, index) => (
+              <Box key={index}>
                 <Spinner />
               </Box>
             ))}
