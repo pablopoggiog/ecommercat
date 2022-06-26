@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { ChakraProvider } from "@chakra-ui/react";
 import { store } from "./state/store";
 import App from "./App";
+import theme from "./theme";
 import "./index.css";
 
 const container = document.getElementById("root")!;
@@ -12,7 +13,7 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <App />
       </ChakraProvider>
     </Provider>

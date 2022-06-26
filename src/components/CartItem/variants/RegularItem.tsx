@@ -9,7 +9,6 @@ interface CartItemProps {
   decrement: () => void;
   increment: () => void;
   remove: () => void;
-  isTheLastItem: boolean;
 }
 
 export const RegularItem: FC<CartItemProps> = ({
@@ -18,7 +17,6 @@ export const RegularItem: FC<CartItemProps> = ({
   decrement,
   increment,
   remove,
-  isTheLastItem,
 }) => (
   <>
     <VStack key={id} w="full" gap={5} p={3}>
@@ -55,7 +53,7 @@ export const RegularItem: FC<CartItemProps> = ({
         </Flex>
       </Flex>
     </VStack>
-    {/* Divider only between elements */}
-    {!isTheLastItem && <Divider />}
+
+    <Divider />
   </>
 );

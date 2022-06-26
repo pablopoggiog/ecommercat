@@ -15,17 +15,21 @@ export const DropdownItem: FC<CartItemProps> = ({
   decrement,
   increment,
 }) => (
-  <MenuItem justifyContent="space-between" gap={5}>
+  <MenuItem justifyContent="space-between" gap={5} maxW="90vw">
     <Image w={6} src={image} />
     <Text w="full" textAlign="left" fontWeight="bold">
       {name}
     </Text>
     <Flex gap={3} align="center">
-      <Button onClick={decrement}>-1</Button>
+      <Button colorScheme="teal" onClick={decrement}>
+        -1
+      </Button>
       <Text fontSize="lg" fontWeight="bold">
         {amount}
       </Text>
-      <Button onClick={increment}>+1</Button>
+      <Button colorScheme="teal" onClick={increment}>
+        +1
+      </Button>
     </Flex>
   </MenuItem>
 );
