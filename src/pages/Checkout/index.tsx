@@ -22,10 +22,16 @@ export const Checkout = () => {
       m={{ base: 5, md: 10 }}
       p={{ base: 5, md: 10, lg: 20 }}
       rounded="lg"
-      minH="85vh"
     >
-      <VStack gap={8} w="full" h="full" align="space-between">
-        <VStack gap={8} w="full" h="full" align="space-between">
+      <Flex
+        direction="column"
+        w="full"
+        h="full"
+        justify="space-between"
+        minHeight="70vh"
+        gap={7}
+      >
+        <VStack gap={{ lg: 7 }} w="full" h="full" align="space-between">
           {cartList?.map(({ product, amount }) => (
             <CartItem key={product.id} product={product} amount={amount} />
           ))}
@@ -37,7 +43,6 @@ export const Checkout = () => {
           justify="flex-end"
           w="full"
           gap={5}
-          mt="auto"
         >
           <Text color={totalPriceColor} fontSize="lg" fontWeight="bold">
             Total: ${totalPrice}
@@ -45,7 +50,7 @@ export const Checkout = () => {
 
           <Button colorScheme="teal">Finish Purchase</Button>
         </Flex>
-      </VStack>
+      </Flex>
     </Flex>
   );
 };
