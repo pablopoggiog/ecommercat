@@ -27,7 +27,12 @@ export const DropdownItem: FC<CartItemProps> = ({
         <Button colorScheme="teal" onClick={decrement}>
           -1
         </Button>
-        <Text color={amountColor} fontSize="lg" fontWeight="bold">
+        <Text
+          color={amountColor}
+          fontSize="lg"
+          fontWeight="bold"
+          data-testid="items-amount"
+        >
           {amount}
         </Text>
         <Button colorScheme="teal" onClick={increment}>

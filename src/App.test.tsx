@@ -1,15 +1,18 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { store } from "@/state/store";
+import { store } from "state/store";
 import App from "./App";
 
-test("renders learn react link", () => {
-  render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
+describe("App", () => {
+  it("renders the logo in the header", () => {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
 
-  expect(screen.getByText(/learn/i)).toBeInTheDocument();
+    const nintendoLogo = screen.getByAltText(/nintendo logo/i);
+
+    expect(nintendoLogo).toBeInTheDocument();
+  });
 });
