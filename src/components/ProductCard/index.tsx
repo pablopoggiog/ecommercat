@@ -70,8 +70,7 @@ export const ProductCard: FC<Product> = ({ name, type, price, image, id }) => {
           h="fit-content"
           bgColor="teal.500"
           color="white"
-          px={2}
-          pb={1}
+          p={2}
           rounded="lg"
         >
           <Flex>
@@ -86,7 +85,12 @@ export const ProductCard: FC<Product> = ({ name, type, price, image, id }) => {
               {name}
             </Text>
           </Flex>
-          <Flex justify="space-between" w="full" align="center">
+          <Flex
+            justify="space-between"
+            w="full"
+            align="center"
+            m="0 !important"
+          >
             <Text fontSize={["lg", "xl"]} fontWeight="semibold">
               ${price}
             </Text>
