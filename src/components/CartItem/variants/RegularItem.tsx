@@ -45,7 +45,7 @@ export const RegularItem: FC<CartItemProps> = ({
         color="whiteAlpha.900"
       >
         <Flex gap={3} align="center">
-          <Button colorScheme="teal" onClick={remove}>
+          <Button colorScheme="teal" onClick={remove} data-testid="delete-icon">
             <DeleteIcon />
           </Button>
         </Flex>
