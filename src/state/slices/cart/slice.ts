@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "../../store";
 import { Product } from "types";
-import { json } from "stream/consumers";
 
 interface CartProduct {
   amount: number;
