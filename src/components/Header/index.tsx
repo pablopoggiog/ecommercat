@@ -31,7 +31,14 @@ export const Header = () => {
     <Box px={4} borderBottom="1px lightgray solid">
       <Flex h={16} alignItems="center" justifyContent="space-between">
         <Box w={60}>
-          <Image w={100} rounded="lg" src={NintendoLogo} alt="Nintendo logo" />
+          <RouterLink to="/ecommercat/products">
+            <Image
+              w={100}
+              rounded="lg"
+              src={NintendoLogo}
+              alt="Nintendo logo"
+            />
+          </RouterLink>
         </Box>
 
         <Flex alignItems="center">
@@ -95,7 +102,10 @@ export const Header = () => {
                     <MenuDivider />
                     <MenuItem closeOnSelect w="full">
                       <Center w="full">
-                        <RouterLink to="/checkout" style={{ width: "100%" }}>
+                        <RouterLink
+                          to="/ecommercat/checkout"
+                          style={{ width: "100%" }}
+                        >
                           <Button
                             colorScheme="teal"
                             w="full"

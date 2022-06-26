@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAppDispatch } from "hooks/reduxHooks";
 import { Header } from "./components";
 import { Products, Checkout } from "./pages";
@@ -21,12 +21,15 @@ const App = () => {
     <BrowserRouter>
       <Header />
       <Routes>
-        {/* This below was my idea but GH Pages seems to have issues with it */}
-        {/* <Route index element={<Navigate replace to="/products" />} /> */}
-        {/* <Route path="/products" element={<Products />} /> */}
+        {/* This below was my original idea but GH Pages seems to have issues with it, so I'll make the redirection manually from the header */}
+        {/* ⬇️ */}
+        <Route
+          path="/ecommercat"
+          element={<Navigate replace to="/ecommercat/products" />}
+        />
 
-        <Route path="/" element={<Products />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/ecommercat/products" element={<Products />} />
+        <Route path="/ecommercat/checkout" element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   );
