@@ -3,14 +3,18 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAppDispatch } from "hooks/reduxHooks";
 import { Header } from "./components";
 import { Products, Checkout } from "./pages";
-
-import { loadFromStorage } from "state/slices/cart/slice";
+import { loadCartFromStorage } from "state/slices/cart/slice";
+import { fetchProductsAsync } from "state/slices/products/slice";
 
 const App = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(loadFromStorage());
+    dispatch(fetchProductsAsync());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(loadCartFromStorage());
   }, [dispatch]);
 
   return (

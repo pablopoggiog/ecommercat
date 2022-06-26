@@ -1,19 +1,10 @@
-import { useEffect } from "react";
 import { Grid, Spinner, Box } from "@chakra-ui/react";
 import { ProductCard } from "components";
-import { useAppDispatch, useAppSelector } from "hooks/reduxHooks";
-import {
-  fetchProductsAsync,
-  selectProducts,
-} from "state/slices/products/slice";
+import { useAppSelector } from "hooks/reduxHooks";
+import { selectProducts } from "state/slices/products/slice";
 
 export const Products = () => {
-  const dispatch = useAppDispatch();
   const products = useAppSelector(selectProducts);
-
-  useEffect(() => {
-    dispatch(fetchProductsAsync());
-  }, [dispatch]);
 
   return (
     <Grid

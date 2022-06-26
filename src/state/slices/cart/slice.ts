@@ -38,7 +38,7 @@ export const cartSlice = createSlice({
       // Store the cart in local storage for persistence
       window.localStorage.setItem("cart", JSON.stringify(state));
     },
-    loadFromStorage: (state) => {
+    loadCartFromStorage: (state) => {
       const stringifiedCart = window.localStorage.getItem("cart");
 
       if (stringifiedCart) {
@@ -89,7 +89,7 @@ export const {
   incrementProductAmount,
   decrementProductAmount,
   removeProduct,
-  loadFromStorage,
+  loadCartFromStorage,
 } = cartSlice.actions;
 
 export const cartReducer = (state: RootState) => state.cartReducer;
