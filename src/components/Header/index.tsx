@@ -10,13 +10,12 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
-  useColorModeValue,
   Stack,
   useColorMode,
   Center,
   Text,
 } from "@chakra-ui/react";
-import { MoonIcon, SunIcon, CheckCircleIcon } from "@chakra-ui/icons";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { useAppSelector } from "hooks/reduxHooks";
 import { CartItem } from "components";
 import { cartReducer } from "state/slices/cart/slice";
@@ -29,7 +28,7 @@ export const Header = () => {
   const { cartList, totalPrice } = useAppSelector(cartReducer);
 
   return (
-    <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+    <Box px={4} borderBottom="1px lightgray solid">
       <Flex h={16} alignItems="center" justifyContent="space-between">
         <Box w={60}>
           <Image w={100} rounded="lg" src={NintendoLogo} />
@@ -88,14 +87,11 @@ export const Header = () => {
                     ))}
 
                     <MenuDivider />
-                    <MenuItem
-                      closeOnSelect
-                      w="full"
-                      _hover={{ background: "transparent" }}
-                    >
+                    <MenuItem closeOnSelect w="full">
                       <Center w="full">
                         <RouterLink to="/checkout" style={{ width: "100%" }}>
                           <Button
+                            colorScheme="teal"
                             w="full"
                             rightIcon={<Image w={6} src={CartIcon} />}
                           >

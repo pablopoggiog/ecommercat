@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { Flex, Button, MenuItem, Text, Image } from "@chakra-ui/react";
 import { useAppDispatch } from "hooks/reduxHooks";
 import {
   incrementProductAmount,
@@ -13,14 +12,12 @@ interface CartItemProps {
   product: Product;
   isDropdownItem?: boolean;
   amount: number;
-  isTheLastItem: boolean;
 }
 
 export const CartItem: FC<CartItemProps> = ({
   product,
   isDropdownItem,
   amount,
-  isTheLastItem,
 }) => {
   const dispatch = useAppDispatch();
 
@@ -39,7 +36,6 @@ export const CartItem: FC<CartItemProps> = ({
     <RegularItem
       product={product}
       amount={amount}
-      isTheLastItem={isTheLastItem}
       decrement={decrement}
       increment={increment}
       remove={remove}
