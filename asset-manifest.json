@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ecommercat/static/css/main.e6c13ad2.css",
-    "main.js": "/ecommercat/static/js/main.a73ee308.js",
+    "main.js": "/ecommercat/static/js/main.2171f825.js",
     "static/media/nintendo-logo.png": "/ecommercat/static/media/nintendo-logo.131556c896162cbe896a.png",
     "index.html": "/ecommercat/index.html",
     "static/media/cart-icon.svg": "/ecommercat/static/media/cart-icon.05dfd14f0943edf68c9a30788565c795.svg",
     "main.e6c13ad2.css.map": "/ecommercat/static/css/main.e6c13ad2.css.map",
-    "main.a73ee308.js.map": "/ecommercat/static/js/main.a73ee308.js.map"
+    "main.2171f825.js.map": "/ecommercat/static/js/main.2171f825.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.a73ee308.js"
+    "static/js/main.2171f825.js"
   ]
 }
