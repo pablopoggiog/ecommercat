@@ -22,7 +22,7 @@ Here, you'll be able to:
 
 To run the app, you'll have 2 options:
 
-1. Go to the [deployed website](https://pablopoggiog.github.io/ecommercat/), this is by far the simplest and fastest option!
+1. Go to the [deployed website](https://pablopoggiog.github.io/ecommercat/).
 2. Run the app locally.
 
 ### Run the app locally
