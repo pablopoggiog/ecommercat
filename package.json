@@ -2,6 +2,7 @@
   "name": "ecommercat",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://pablopoggiog.github.io/ecommercat",
   "dependencies": {
     "@chakra-ui/icons": "^2.0.2",
     "@chakra-ui/react": "^2.2.1",
