@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   Flex,
   useColorModeValue,
@@ -5,6 +6,7 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 import { useAppSelector } from "hooks/reduxHooks";
 
 import { CartItem } from "components";
@@ -31,11 +33,20 @@ export const Checkout = () => {
         minH="70vh"
         gap={7}
       >
-        <VStack gap={{ lg: 7 }} w="full" h="full" align="space-between">
-          {cartList?.map(({ product, amount }) => (
-            <CartItem key={product.id} product={product} amount={amount} />
-          ))}
-        </VStack>
+        <Flex direction="column" gap={10}>
+          <Link to="/ecommercat/products">
+            <Flex gap={2}>
+              <ArrowBackIcon w={6} h={6} />
+              <Text fontWeight="semibold">Go Back</Text>
+            </Flex>
+          </Link>
+
+          <VStack gap={{ lg: 7 }} w="full" h="full" align="space-between">
+            {cartList?.map(({ product, amount }) => (
+              <CartItem key={product.id} product={product} amount={amount} />
+            ))}
+          </VStack>
+        </Flex>
 
         <Flex
           direction={{ base: "column", lg: "row" }}
