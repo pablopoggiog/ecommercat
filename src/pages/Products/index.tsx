@@ -1,7 +1,7 @@
 import { Grid, Spinner, Flex } from "@chakra-ui/react";
 import { ProductCard } from "components";
 import { useAppSelector } from "hooks/reduxHooks";
-import { selectProducts } from "state/slices/products/slice";
+import { selectProducts } from "state/slices/products";
 
 export const Products = () => {
   const products = useAppSelector(selectProducts);

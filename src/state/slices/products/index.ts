@@ -31,6 +31,7 @@ export const productsSlice = createSlice({
         state.status = "loading";
       })
       .addCase(fetchProductsAsync.fulfilled, (state, { payload }) => {
+        console.log("fetchProductsAsync: ", payload);
         state.status = "idle";
         state.products = payload;
       })

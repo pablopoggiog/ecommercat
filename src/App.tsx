@@ -4,7 +4,7 @@ import { useAppDispatch } from "hooks/reduxHooks";
 import { Header } from "./components";
 import { Products, Checkout } from "./pages";
 import { loadCartFromStorage } from "state/slices/cart";
-import { fetchProductsAsync } from "state/slices/products/slice";
+import { fetchProductsAsync } from "state/slices/products";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -21,8 +21,6 @@ const App = () => {
     <BrowserRouter>
       <Header />
       <Routes>
-        {/* This below was my original idea but GH Pages seems to have issues with it, so I'll make the redirection manually from the header */}
-        {/* ⬇️ */}
         <Route
           path="/ecommercat"
           element={<Navigate replace to="/ecommercat/products" />}
