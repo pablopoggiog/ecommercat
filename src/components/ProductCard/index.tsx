@@ -7,7 +7,6 @@ import {
   Image,
   Flex,
   useColorModeValue,
-  Spinner,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useAppDispatch } from "hooks/reduxHooks";
@@ -18,7 +17,8 @@ import { Product } from "types";
 const AnimatedImage = motion(Image);
 
 export const ProductCard: FC<Product> = ({ name, type, price, image, id }) => {
-  const [buttonText, setButtonText] = useState<string>();
+  const [buttonText, setButtonText] = useState<string>("");
+
   const dispatch = useAppDispatch();
 
   const imageBackgroundColor = useColorModeValue("gray.300", "gray.700");
@@ -47,14 +47,13 @@ export const ProductCard: FC<Product> = ({ name, type, price, image, id }) => {
             alt={`${name} picture`}
             h="85%"
             m="auto"
-            layout
             animate={{
               opacity: [0, 0.5, 1],
               scale: [0.1, 1.1, 1],
               x: [-30, 30, 0],
             }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
-            fallback={<Spinner m="auto" />}
+            loading="lazy"
           />
           <Text
             fontSize={["xs", "sm"]}
