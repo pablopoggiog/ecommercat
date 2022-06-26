@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Grid } from "@chakra-ui/react";
+import { Grid, Spinner, Box } from "@chakra-ui/react";
 import { ProductCard } from "components";
 import { useAppDispatch, useAppSelector } from "hooks/reduxHooks";
 import {
@@ -26,17 +26,28 @@ export const Products = () => {
         "repeat(5, 1fr)",
       ]}
       gap={6}
+      alignContent="space-around"
+      justifyItems="center"
+      minH="90vh"
     >
-      {products?.map(({ name, type, image }) => (
-        <ProductCard
-          key={image}
-          image={image}
-          name={name}
-          type={type}
-          price={10}
-          id={image}
-        />
-      ))}
+      {products.length
+        ? products?.map(({ name, type, image }) => (
+            <ProductCard
+              key={image}
+              image={image}
+              name={name}
+              type={type}
+              price={10}
+              id={image}
+            />
+          ))
+        : Array(30)
+            .fill("")
+            .map((el) => (
+              <Box>
+                <Spinner />
+              </Box>
+            ))}
     </Grid>
   );
 };
