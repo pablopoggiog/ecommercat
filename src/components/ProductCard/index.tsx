@@ -43,6 +43,7 @@ export const ProductCard: FC<Product> = ({ name, type, price, image, id }) => {
         <Flex h={160} w="full" m="auto" position="relative">
           <AnimatedImage
             src={image}
+            alt={`${name} picture`}
             h="85%"
             m="auto"
             layout
