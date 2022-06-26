@@ -4,7 +4,7 @@ import {
   incrementProductAmount,
   decrementProductAmount,
   removeProduct,
-} from "state/slices/cart/slice";
+} from "state/slices/cart";
 import { DropdownItem, RegularItem } from "./variants";
 import { Product } from "@/types";
 

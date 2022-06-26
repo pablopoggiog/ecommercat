@@ -7,10 +7,11 @@ import {
   Image,
   Flex,
   useColorModeValue,
+  Spinner,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useAppDispatch } from "hooks/reduxHooks";
-import { addProduct } from "state/slices/cart/slice";
+import { addProduct } from "state/slices/cart";
 import { ReactComponent as CartIcon } from "assets/cart-icon.svg";
 import { Product } from "types";
 
@@ -52,7 +53,8 @@ export const ProductCard: FC<Product> = ({ name, type, price, image, id }) => {
               scale: [0.1, 1.1, 1],
               x: [-30, 30, 0],
             }}
-            transition={{ duration: 0.7, ease: "easeInOut" }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            fallback={<Spinner m="auto" />}
           />
           <Text
             fontSize={["xs", "sm"]}
@@ -109,3 +111,5 @@ export const ProductCard: FC<Product> = ({ name, type, price, image, id }) => {
     </GridItem>
   );
 };
+
+export default ProductCard;

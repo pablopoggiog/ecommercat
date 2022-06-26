@@ -18,7 +18,7 @@ import {
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { useAppSelector } from "hooks/reduxHooks";
 import { CartItem } from "components";
-import { cartReducer } from "state/slices/cart/slice";
+import { cartReducer } from "state/slices/cart";
 import { ReactComponent as CartIcon } from "assets/cart-icon.svg";
 import NintendoLogo from "assets/nintendo-logo.png";
 

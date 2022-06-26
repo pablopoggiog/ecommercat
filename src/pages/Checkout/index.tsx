@@ -8,7 +8,7 @@ import {
 import { useAppSelector } from "hooks/reduxHooks";
 
 import { CartItem } from "components";
-import { cartReducer } from "state/slices/cart/slice";
+import { cartReducer } from "state/slices/cart";
 
 export const Checkout = () => {
   const backgroundColor = useColorModeValue("gray.400", "gray.700");

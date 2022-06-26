@@ -76,9 +76,13 @@ export const cartSlice = createSlice({
       const productIndex = state.cartList.findIndex(
         (element) => element.product.id === id
       );
+      const unitsOfItemToRemove = state.cartList[productIndex].amount;
+      const toRemoveFromTotalPrice =
+        unitsOfItemToRemove * state.cartList[productIndex].product.price;
       state.cartList = state.cartList.filter(
         (_, index) => index !== productIndex
       );
+      state.totalPrice -= toRemoveFromTotalPrice;
     },
   },
 });
