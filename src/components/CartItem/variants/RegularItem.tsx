@@ -34,22 +34,31 @@ export const RegularItem: FC<CartItemProps> = ({
         <Text fontSize="sm" fontWeight="thin">
           {type}
         </Text>
-        <Text ml="auto" fontWeight="semibold">
+        <Text color="gray.700" ml="auto" fontWeight="semibold">
           ${price}
         </Text>
       </Flex>
-      <Flex w="full" align="center" justify="space-between">
+      <Flex
+        w="full"
+        align="center"
+        justify="space-between"
+        color="whiteAlpha.900"
+      >
         <Flex gap={3} align="center">
-          <Button onClick={remove}>
+          <Button colorScheme="teal" onClick={remove}>
             <DeleteIcon />
           </Button>
         </Flex>
         <Flex gap={3} align="center">
-          <Button onClick={decrement}>-1</Button>
+          <Button colorScheme="teal" onClick={decrement}>
+            -1
+          </Button>
           <Text fontSize="lg" fontWeight="bold">
             {amount}
           </Text>
-          <Button onClick={increment}>+1</Button>
+          <Button colorScheme="teal" onClick={increment}>
+            +1
+          </Button>
         </Flex>
       </Flex>
     </VStack>

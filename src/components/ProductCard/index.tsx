@@ -7,11 +7,12 @@ import {
   Image,
   Flex,
   useColorModeValue,
+  Icon,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useAppDispatch } from "hooks/reduxHooks";
 import { addProduct } from "state/slices/cart/slice";
-import CartIcon from "assets/cart-icon.png";
+import { ReactComponent as CartIcon } from "assets/cart-icon.svg";
 import { Product } from "types";
 
 // const AnimatedImage = motion(Image);
@@ -78,11 +79,17 @@ export const ProductCard: FC<Product> = ({ name, type, price, image, id }) => {
             </Text>
           </Flex>
           <Flex justify="space-between" w="full" align="center">
-            <Text fontSize={["xl", "x-large"]} fontWeight="semibold">
+            <Text fontSize={["lg", "xl"]} fontWeight="semibold">
               ${price}
             </Text>
-            <Button onClick={addToCart} size="md">
-              {buttonText || <Image h="50%" src={CartIcon} />}
+            <Button
+              color="whiteAlpha.900"
+              bgColor="whiteAlpha.500"
+              colorScheme="whiteAlpha"
+              onClick={addToCart}
+              size="md"
+            >
+              {buttonText || <CartIcon />}
             </Button>
           </Flex>
         </VStack>

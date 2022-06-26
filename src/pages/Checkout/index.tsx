@@ -12,6 +12,7 @@ import { cartReducer } from "state/slices/cart/slice";
 
 export const Checkout = () => {
   const backgroundColor = useColorModeValue("gray.400", "gray.700");
+  const totalPriceColor = useColorModeValue("gray.700", "gray.400");
 
   const { cartList, totalPrice } = useAppSelector(cartReducer);
 
@@ -23,10 +24,12 @@ export const Checkout = () => {
       rounded="lg"
       minH="85vh"
     >
-      <VStack gap={8} w="full">
-        {cartList?.map(({ product, amount }) => (
-          <CartItem key={product.id} product={product} amount={amount} />
-        ))}
+      <VStack gap={8} w="full" h="full" align="space-between">
+        <VStack gap={8} w="full" h="full" align="space-between">
+          {cartList?.map(({ product, amount }) => (
+            <CartItem key={product.id} product={product} amount={amount} />
+          ))}
+        </VStack>
 
         <Flex
           direction={{ base: "column", lg: "row" }}
@@ -34,12 +37,13 @@ export const Checkout = () => {
           justify="flex-end"
           w="full"
           gap={5}
+          mt="auto"
         >
-          <Text fontSize="lg" fontWeight="bold">
+          <Text color={totalPriceColor} fontSize="lg" fontWeight="bold">
             Total: ${totalPrice}
           </Text>
 
-          <Button>Finish Purchase</Button>
+          <Button colorScheme="teal">Finish Purchase</Button>
         </Flex>
       </VStack>
     </Flex>

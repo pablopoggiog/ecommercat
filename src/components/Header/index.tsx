@@ -19,7 +19,7 @@ import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { useAppSelector } from "hooks/reduxHooks";
 import { CartItem } from "components";
 import { cartReducer } from "state/slices/cart/slice";
-import CartIcon from "assets/cart-icon.png";
+import { ReactComponent as CartIcon } from "assets/cart-icon.svg";
 import NintendoLogo from "assets/nintendo-logo.png";
 
 export const Header = () => {
@@ -36,7 +36,7 @@ export const Header = () => {
 
         <Flex alignItems="center">
           <Stack direction="row" spacing={7}>
-            <Button onClick={toggleColorMode}>
+            <Button colorScheme="teal" onClick={toggleColorMode}>
               {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
             </Button>
 
@@ -93,7 +93,7 @@ export const Header = () => {
                           <Button
                             colorScheme="teal"
                             w="full"
-                            rightIcon={<Image w={6} src={CartIcon} />}
+                            rightIcon={<CartIcon />}
                           >
                             Checkout
                           </Button>
