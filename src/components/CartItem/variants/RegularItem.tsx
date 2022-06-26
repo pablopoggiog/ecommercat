@@ -21,7 +21,7 @@ export const RegularItem: FC<CartItemProps> = ({
   <>
     <VStack key={id} w="full" gap={5} p={3}>
       <Flex w="full" gap={3} align="center">
-        <Image w={6} src={image} />
+        <Image w={6} src={image} alt={`${name} thumbnail`} />
         <Text
           textOverflow="ellipsis"
           overflow="hidden"

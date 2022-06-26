@@ -31,7 +31,7 @@ export const Header = () => {
     <Box px={4} borderBottom="1px lightgray solid">
       <Flex h={16} alignItems="center" justifyContent="space-between">
         <Box w={60}>
-          <Image w={100} rounded="lg" src={NintendoLogo} />
+          <Image w={100} rounded="lg" src={NintendoLogo} alt="Nintendo logo" />
         </Box>
 
         <Flex alignItems="center">
@@ -78,12 +78,18 @@ export const Header = () => {
                     <MenuDivider />
 
                     {cartList?.map(({ product, amount }, index) => (
-                      <CartItem
+                      <MenuItem
                         key={product.id}
-                        product={product}
-                        amount={amount}
-                        isDropdownItem
-                      />
+                        justifyContent="space-between"
+                        gap={5}
+                        maxW="90vw"
+                      >
+                        <CartItem
+                          product={product}
+                          amount={amount}
+                          isDropdownItem
+                        />
+                      </MenuItem>
                     ))}
 
                     <MenuDivider />

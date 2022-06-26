@@ -1,12 +1,5 @@
 import { FC } from "react";
-import {
-  Flex,
-  Button,
-  MenuItem,
-  Text,
-  Image,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Flex, Button, Text, Image, useColorModeValue } from "@chakra-ui/react";
 import { Product } from "@/types";
 
 interface CartItemProps {
@@ -25,8 +18,8 @@ export const DropdownItem: FC<CartItemProps> = ({
   const amountColor = useColorModeValue("gray.700", "gray.300");
 
   return (
-    <MenuItem justifyContent="space-between" gap={5} maxW="90vw">
-      <Image w={6} src={image} />
+    <>
+      <Image w={6} src={image} alt={`${name} thumbnail`} />
       <Text w="full" textAlign="left" fontWeight="bold">
         {name}
       </Text>
@@ -41,6 +34,6 @@ export const DropdownItem: FC<CartItemProps> = ({
           +1
         </Button>
       </Flex>
-    </MenuItem>
+    </>
   );
 };
