@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "../../store";
 import { Product } from "types";
+import { json } from "stream/consumers";
 
 interface CartProduct {
   amount: number;
@@ -33,6 +34,18 @@ export const cartSlice = createSlice({
           ...state.cartList,
           { amount: 1, product: newProduct },
         ];
+
+      // Store the cart in local storage for persistence
+      window.localStorage.setItem("cart", JSON.stringify(state));
+    },
+    loadFromStorage: (state) => {
+      const stringifiedCart = window.localStorage.getItem("cart");
+
+      if (stringifiedCart) {
+        const cart: CartState = JSON.parse(stringifiedCart);
+        state.cartList = cart.cartList;
+        state.totalPrice = cart.totalPrice;
+      }
     },
     incrementProductAmount: (
       state,
@@ -76,6 +89,7 @@ export const {
   incrementProductAmount,
   decrementProductAmount,
   removeProduct,
+  loadFromStorage,
 } = cartSlice.actions;
 
 export const cartReducer = (state: RootState) => state.cartReducer;
