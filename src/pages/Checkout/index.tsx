@@ -28,7 +28,7 @@ export const Checkout = () => {
         w="full"
         h="full"
         justify="space-between"
-        minHeight="70vh"
+        minH="70vh"
         gap={7}
       >
         <VStack gap={{ lg: 7 }} w="full" h="full" align="space-between">

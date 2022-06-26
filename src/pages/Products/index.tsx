@@ -1,4 +1,4 @@
-import { Grid, Spinner, Box } from "@chakra-ui/react";
+import { Grid, Spinner, Flex } from "@chakra-ui/react";
 import { ProductCard } from "components";
 import { useAppSelector } from "hooks/reduxHooks";
 import { selectProducts } from "state/slices/products/slice";
@@ -6,7 +6,7 @@ import { selectProducts } from "state/slices/products/slice";
 export const Products = () => {
   const products = useAppSelector(selectProducts);
 
-  return (
+  return products.length ? (
     <Grid
       m={5}
       templateColumns={[
@@ -21,24 +21,20 @@ export const Products = () => {
       justifyItems="center"
       minH="90vh"
     >
-      {products.length
-        ? products?.map(({ name, type, image }) => (
-            <ProductCard
-              key={image}
-              image={image}
-              name={name}
-              type={type}
-              price={10}
-              id={image}
-            />
-          ))
-        : Array(30)
-            .fill("")
-            .map((_, index) => (
-              <Box key={index}>
-                <Spinner />
-              </Box>
-            ))}
+      {products?.map(({ name, type, image }) => (
+        <ProductCard
+          key={image}
+          image={image}
+          name={name}
+          type={type}
+          price={10}
+          id={image}
+        />
+      ))}
     </Grid>
+  ) : (
+    <Flex w="full" minH="90vh" align="center" justify="center">
+      <Spinner />
+    </Flex>
   );
 };
