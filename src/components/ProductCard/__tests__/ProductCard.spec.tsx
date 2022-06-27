@@ -5,6 +5,21 @@ import { store } from "state/store";
 import theme from "theme";
 import { ProductCard } from "..";
 
+// @ts-ignore
+global.IntersectionObserver = class IntersectionObserver {
+  observe() {
+    return null;
+  }
+
+  disconnect() {
+    return null;
+  }
+
+  unobserve() {
+    return null;
+  }
+};
+
 describe("ProductCard", () => {
   it("renders the right information for the product", () => {
     render(
@@ -23,14 +38,12 @@ describe("ProductCard", () => {
     );
 
     const productName = screen.getByText(product.name);
-    const productImage = screen.getByAltText(`${product.name} picture`);
     const addToCartButton = screen.getByRole("button");
     const typeTag = screen.getByText(product.type);
     const priceTag = screen.getByText(`$${product.price}`);
 
     const elementsToValidate = [
       productName,
-      productImage,
       addToCartButton,
       typeTag,
       priceTag,

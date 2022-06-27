@@ -9,6 +9,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { useAppDispatch } from "hooks/reduxHooks";
 import { addProduct } from "state/slices/cart";
 import { ReactComponent as CartIcon } from "assets/cart-icon.svg";
@@ -22,6 +23,10 @@ export const ProductCard: FC<Product> = ({ name, type, price, image, id }) => {
   const dispatch = useAppDispatch();
 
   const imageBackgroundColor = useColorModeValue("gray.300", "gray.700");
+
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
 
   const addToCart = () => {
     dispatch(addProduct({ name, type, price, image, id }));
@@ -39,22 +44,25 @@ export const ProductCard: FC<Product> = ({ name, type, price, image, id }) => {
       h="250"
       bg={imageBackgroundColor}
       overflow="hidden"
+      ref={ref}
     >
       <VStack h="full" justify="space-between">
         <Flex h={160} w="full" m="auto" position="relative">
-          <AnimatedImage
-            src={image}
-            alt={`${name} picture`}
-            h="85%"
-            m="auto"
-            animate={{
-              opacity: [0, 0.5, 1],
-              scale: [0.1, 1.1, 1],
-              x: [-30, 30, 0],
-            }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            loading="lazy"
-          />
+          {inView && (
+            <AnimatedImage
+              src={image}
+              alt={`${name} picture`}
+              h="85%"
+              m="auto"
+              animate={{
+                opacity: [0, 0.5, 1],
+                scale: [0.1, 1.1, 1],
+                x: [-40, 30, 0, -20, 20, 0, 10, 0],
+                y: [-40, 0, 30, -20, 20, 0, 10, 0],
+              }}
+              transition={{ duration: 1, ease: "easeInOut" }}
+            />
+          )}
           <Text
             fontSize={["xs", "sm"]}
             m={0}
